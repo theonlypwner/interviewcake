@@ -43,6 +43,7 @@ class TestQ1(unittest.TestCase):
     def test_multiple(self):
         self.check([0, 2, 2, 4, 0, 4], [4, [(0, 3), (0, 5), (4, 5)]])
 
+
 class TestQ2(unittest.TestCase):
 
     def check(self, array, result):
@@ -69,6 +70,81 @@ class TestQ2(unittest.TestCase):
 
     def test_zero2(self):
         self.check([1, 0, 0], [0, 0, 0])
+
+
+class TestQ6Rectangles(unittest.TestCase):
+
+    def check(self, a, b, output):
+        self.assertEqual(ic.rectangle_intersection(a, b), output)
+
+    def test_rectangle_overlap(self):
+        self.check({
+            'x': 0,
+            'y': 0,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 5,
+            'y': 5,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 5,
+            'y': 5,
+            'width': 5,
+            'height': 5,
+        })
+
+    def test_rectangle_contained(self):
+        self.check({
+            'x': 0,
+            'y': 0,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 5,
+            'y': 5,
+            'width': 5,
+            'height': 5,
+        }, {
+            'x': 5,
+            'y': 5,
+            'width': 5,
+            'height': 5,
+        })
+
+    def test_rectangle_gap(self):
+        self.check({
+            'x': 0,
+            'y': 0,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 11,
+            'y': 11,
+            'width': 10,
+            'height': 10,
+        },
+            None
+        )
+
+    def test_rectangle_touch(self):
+        self.check({
+            'x': 0,
+            'y': 0,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 10,
+            'y': 10,
+            'width': 10,
+            'height': 10,
+        }, {
+            'x': 10,
+            'y': 10,
+            'width': 0,
+            'height': 0,
+        })
 
 if __name__ == '__main__':
     unittest.main()
