@@ -23,12 +23,12 @@ def max_profit(stockPricesYesterday):
     # stockPricesYesterday must not be empty
     assert stockPricesYesterday
 
-    max_profit = 0, set()
-    min_so_far = stockPricesYesterday[0], [0]
+    max_profit = (0, set())
+    min_so_far = (stockPricesYesterday[0], [0])
 
     for i, price in enumerate(stockPricesYesterday[1:], 1):
         if price < min_so_far[0]:
-            min_so_far = price, [i]
+            min_so_far = (price, [i])
             # Since the price decreased, it cannot result in any larger profit
         else:
             # Track every possible minimum position so far
@@ -39,7 +39,7 @@ def max_profit(stockPricesYesterday):
 
             if current_profit > max_profit[0]:
                 # Reset maximum profit amount
-                max_profit = current_profit, set()
+                max_profit = (current_profit, set())
 
             if current_profit == max_profit[0]:
                 # Add all possible
