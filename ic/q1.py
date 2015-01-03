@@ -32,7 +32,7 @@ def max_profit(stockPricesYesterday):
             # Since the price decreased, it cannot result in any larger profit
         else:
             # Track every possible minimum position so far
-            if price == min_so_far:
+            if price == min_so_far[0]:
                 min_so_far[1].append(i)
 
             current_profit = price - min_so_far[0]
@@ -44,6 +44,7 @@ def max_profit(stockPricesYesterday):
             if current_profit == max_profit[0]:
                 # Add all possible
                 for start in min_so_far[1]:
-                    max_profit[1].update(set([(start, i)]))
+                    if start != i:
+                        max_profit[1].update(set([(start, i)]))
 
     return max_profit

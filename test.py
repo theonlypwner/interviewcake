@@ -40,6 +40,8 @@ class TestQ1(unittest.TestCase):
     def test_no_shorting(self):
         self.check([1000, 0], [0, []])
 
+    def test_multiple(self):
+        self.check([0, 2, 2, 4, 0, 4], [4, [(0, 3), (0, 5), (4, 5)]])
 
 class TestQ2(unittest.TestCase):
 
