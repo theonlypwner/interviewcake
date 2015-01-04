@@ -17,6 +17,59 @@ import ic
 import unittest
 
 
+class TestQ6(unittest.TestCase):
+
+    def check(self, output, *input):
+        self.assertEqual(ic.orthotope_intersection(*input), output)
+
+    def test_no_orthotope(self):
+        self.assertRaises(ValueError, lambda: ic.orthotope_intersection())
+
+    def test_improper_dimensions(self):
+        self.assertRaises(ValueError, lambda: ic.orthotope_intersection(
+            ((1, 1), (1, 1)), ((1, 1, 1), (1, 1, 1))
+        ))
+
+    def test_improper_coordinate_order(self):
+        self.assertRaises(ValueError, lambda: ic.orthotope_intersection(
+            ((1, 1), (0, 0)), ((2, 2), (1, 1))
+        ))
+
+    def test_one(self):
+        self.assertRaises(ValueError, lambda: ic.orthotope_intersection(
+            ((0, 0), (1, 1))
+        ))
+
+    def test_overlap(self):
+        self.check(((1, 1), (3, 3)), ((0, 0), (3, 3)), ((1, 1), (4, 4)))
+        self.check(((1, 2), (2, 3)),
+                   ((0, 0), (3, 3)), ((1, 1), (4, 4)), ((0, 2), (2, 5)))
+
+    def test_contained(self):
+        self.check(((1, 1), (2, 2)), ((0, 0), (9, 9)), ((1, 1), (2, 2)))
+        self.check(((2, 3, 4), (3, 4, 5)),
+                   ((0, 1, 2), (5, 6, 7)),
+                   ((1, 2, 3), (4, 5, 6)),
+                   ((2, 3, 4), (3, 4, 5)))
+
+    def test_gap(self):
+        self.check(None, ((0, 0), (1, 1)), ((2, 0), (3, 3)))
+        self.check(None,
+                   ((0, 0, 0, 0), (1, 1, 0, 0)),
+                   ((2, 0, 0, 0), (3, 3, 0, 0)),
+                   ((0, 0, 0, 0), (9, 9, 9, 9)))
+
+    def test_touch(self):
+        self.check(((1, 1), (1, 2)), ((1, 1), (1, 2)), ((1, 1), (2, 3)))
+        self.check(((2, 2), (2, 2)),
+                   ((0, 0), (2, 2)), ((1, 1), (3, 3)), ((2, 2), (4, 4)))
+        self.check(((0, 0), (0, 0)),
+                   ((-1, -1), (0, 0)),
+                   ((0, 0), (1, 1)),
+                   ((-1, -1), (0, 0)),
+                   ((0, 0), (1, 1)))
+
+
 class TestQ6Rectangles(unittest.TestCase):
 
     def check(self, a, b, output):
