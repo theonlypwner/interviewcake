@@ -24,7 +24,7 @@ class TestQ1(unittest.TestCase):
         self.assertEqual(ic.max_profit(input), tuple(output))
 
     def test_empty(self):
-        self.assertRaises(AssertionError, lambda: ic.max_profit([]))
+        self.assertRaises(ValueError, lambda: ic.max_profit([]))
 
     def test_standard(self):
         self.check([1, 0, 10], [10, [(1, 2)]])

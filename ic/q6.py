@@ -24,12 +24,13 @@ def orthotope_intersection(*o):
     Example: ((x1, y1, z1, w1, ...), (x2, y2, z2, w2, ...))
     with x1 <= x2, y1 <= y2, z1 <= z2, ...
     """
-    # There must be at least one orthotope
-    assert len(o)
-    # The number of dimensions must be the same
+    if not len(o):
+        assert ValueError("There must be at least one orthotope")
+
     n = len(o[0][0])
     for orthotope in o:
-        assert n == len(orthotope[0]) == len(orthotope[1])
+        if n != len(orthotope[0]) or n != len(orthotope[1]):
+            raise ValueError("The number of dimensions must be consistent")
 
     # lower and upper vertices
     lower = [None] * n

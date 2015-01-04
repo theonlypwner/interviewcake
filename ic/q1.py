@@ -20,8 +20,8 @@ def max_profit(stockPricesYesterday):
     and a set of all possible trade pairs.
     """
 
-    # stockPricesYesterday must not be empty
-    assert stockPricesYesterday
+    if not stockPricesYesterday:
+        raise ValueError("stockPricesYesterday must not be empty")
 
     max_profit = (0, set())
     min_so_far = (stockPricesYesterday[0], [0])
