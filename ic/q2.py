@@ -18,6 +18,10 @@
 def get_products_of_all_ints_except_at_index(a):
     """Compute an array with each entry replaced by the product
     of all other entries.
+
+    Complexity: n=len(a)
+    O(n) time
+    O(n) auxiliary space
     """
     answer = [1] * len(a)
 

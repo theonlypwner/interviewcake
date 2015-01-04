@@ -23,6 +23,10 @@ def orthotope_intersection(*o):
 
     Example: ((x1, y1, z1, w1, ...), (x2, y2, z2, w2, ...))
     with x1 <= x2, y1 <= y2, z1 <= z2, ...
+
+    Complexity:
+    O(mn) time where m is the number of n-orthotopes
+    O(n) auxiliary space
     """
     if len(o) < 2:
         raise ValueError("There must be at least two orthotopes")
@@ -59,6 +63,11 @@ rectangle_intersection_new = orthotope_intersection
 def rectangle_intersection(a, b):
     """Return the intersection of two rectangles, or None if they do not
     intersect. The format is specific to the original question.
+
+    Complexity:
+    O(1) time
+    O(1) auxiliary space
+    because n = m = 2
     """
 
     a = ((a['x'], a['y']), (a['x'] + a['width'], a['y'] + a['height']))

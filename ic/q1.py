@@ -18,6 +18,11 @@
 def max_profit(stockPricesYesterday):
     """Computes the maximum profit from one buy and one sale trade,
     and a set of all possible trade pairs.
+
+    Complexity: n=len(stockPricesYesterday)
+    O(n) time
+    O(1) auxiliary space for profit amount
+    O(n) worst case, O(1) best case space for trade times
     """
 
     if not stockPricesYesterday:
