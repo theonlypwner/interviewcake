@@ -46,25 +46,30 @@ def get_products_of_all_ints_except_at_index(a):
 def get_products_of_all_ints_except_at_index2(a):
     """Bonus: What if you could use division? Careful-watch out for zeroes!"""
 
-    # Search for a zero
+    # Calculate the product of every element before the first 0,
+    # and also record the position of the first 0
+    product = 1
     zeroIndex = -1
     for i, v in enumerate(a):
         if v == 0:
             zeroIndex = i
             break
+        product *= v
 
-    if zeroIndex != -1:  # a zero is in the array
-        # Everything is zero except for the item at zeroIndex, which
-        # is the product of all other entries.
-        # This also works if there are two zeros in the array, in which case
+    if zeroIndex != -1:  # 0 was found
+        # In the answer, everything is 0 except for the item at zeroIndex,
+        # which should be the product of all other entries.
+        # This also works if there are multiple zeros in the array, in which case
         # all entries will be zero.
-        product = 1
-        for i, v in enumerate(a):
+
+        # product is the cumulative product before the first 0, so
+        # continue to multiply the items to the right of that item
+        for i in range(zeroIndex + 1, len(a)):
             if i != zeroIndex:
-                if v:
-                    product *= v
+                if a[i]:
+                    product *= a[i]
                 else:
-                    # Shortcut when there are two zeros
+                    # Shortcut for when there are two zeros
                     product = 0
                     break
 
@@ -73,11 +78,6 @@ def get_products_of_all_ints_except_at_index2(a):
 
         return answer
     else:  # every element in the array is non-zero
-        # Calculate the product of every element
-        product = 1
-        for v in a:
-            product *= v
-
         answer = [product] * len(a)
 
         # Divide out each element
