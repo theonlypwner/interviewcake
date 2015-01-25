@@ -62,16 +62,15 @@ def get_products_of_all_ints_except_at_index2(a):
         # This also works if there are multiple zeros in the array, in which case
         # all entries will be zero.
 
-        # product is the cumulative product before the first 0, so
+        # product is the cumulative product before zeroIndex, so
         # continue to multiply the items to the right of that item
         for i in range(zeroIndex + 1, len(a)):
-            if i != zeroIndex:
-                if a[i]:
-                    product *= a[i]
-                else:
-                    # Shortcut for when there are two zeros
-                    product = 0
-                    break
+            if a[i]:
+                product *= a[i]
+            else:
+                # Shortcut for when there are two zeros
+                product = 0
+                break
 
         answer = [0] * len(a)
         answer[zeroIndex] = product
