@@ -19,14 +19,15 @@ def get_products_of_all_ints_except_at_index(a):
     """Compute an array with each entry replaced by the product
     of all other entries.
 
-    Complexity: n=len(a)
-    O(n) time
-    O(n) auxiliary space
+    Complexity: N=len(a)
+    O(N) time
+    O(N) auxiliary space
     """
-    answer = [1] * len(a)
+    N = len(a)
+    answer = [1] * N
 
     # Build array containing values of products to the left
-    for i in range(len(a) - 1):
+    for i in range(N - 1):
         answer[i + 1] = answer[i] * a[i]
     # Note: an accumulator variable is used in the second part but not here,
     # but a local accumulator variable could be potentially accessed faster
@@ -34,7 +35,7 @@ def get_products_of_all_ints_except_at_index(a):
 
     # Store the result as the array of products to the right is built
     accum = 1
-    i = len(a) - 2  # second-last entry
+    i = N - 2  # second-last entry
     while i >= 0:
         accum *= a[i + 1]
         answer[i] *= accum
