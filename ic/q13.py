@@ -19,9 +19,9 @@ def find_rotation_point(a):
     """Return the index of the first element of a sorted array
     that is rotated any number of times.
 
-    Complexity: n=len(a), O(f) for len(a[i])
+    Complexity: n=len(a), O(f) for comparing items
     O(f log n) time
-    O(log n) time for constant length items
+    O(log n) time for constant time compares
     """
     lo = 0
     hi = len(a)  # instead of len(a) - 1, to detect if it is unrotated
