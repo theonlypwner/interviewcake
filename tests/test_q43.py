@@ -22,6 +22,7 @@ class TestQ43(unittest.TestCase):
     def check(self, output, *arrays):
         if len(arrays) == 2:
             self.assertEqual(ic.merge_arrays2(*arrays), output)
+            self.assertEqual(ic.merge_arrays2(arrays[1], arrays[0]), output)
         self.assertEqual(ic.merge_arrays(*arrays), output)
 
     def test_given(self):
