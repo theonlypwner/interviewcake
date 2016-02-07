@@ -60,7 +60,7 @@ def merge_arrays(*a):
     """
 
     N = len(a)
-    index = [0] * N
+    cur_index = [0] * N
     result = []
 
     # Add smallest element so far
@@ -69,16 +69,16 @@ def merge_arrays(*a):
 
         # Find array with smallest next item
         for array in range(N):
-            if index[array] < len(a[array]) and (min_array == None or
-                a[array][index[array]] < a[min_array][index[min_array]]):
+            if cur_index[array] < len(a[array]) and (min_array is None or
+                a[array][cur_index[array]] < a[min_array][cur_index[min_array]]):
 
                 min_array = array
 
-        if min_array == None:
+        if min_array is None:
             break
 
         # Add it
-        result.append(a[min_array][index[min_array]])
-        index[min_array] += 1
+        result.append(a[min_array][cur_index[min_array]])
+        cur_index[min_array] += 1
 
     return result
