@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Export all public functions
+# Question 21: The Stolen Breakfast Drone (find-unique-int-among-duplicates)
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,13 +14,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .q1 import max_profit
-from .q2 import get_products_of_all_ints_except_at_index
-from .q2 import get_products_of_all_ints_except_at_index2
-from .q3 import highest_product
-from .q3 import highest_product2
-from .q6 import orthotope_intersection
-from .q6 import rectangle_intersection
-from .q13 import find_rotation_point
-from .q43 import merge_arrays
-from .q43 import merge_arrays2
+
+def unique_id(delivery_id_confirmations):
+    """Find what element appears exactly once, in an array where other elements appear exactly twice.
+
+    Complexity: n=len(delivery_id_confirmations)
+    O(n) time
+    O(1) space
+    """
+
+    result = 0
+
+    for delivery_id in delivery_id_confirmations:
+        result ^= delivery_id
+
+    return result

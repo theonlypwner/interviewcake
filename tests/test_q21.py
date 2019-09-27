@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Export all public functions
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,13 +13,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .q1 import max_profit
-from .q2 import get_products_of_all_ints_except_at_index
-from .q2 import get_products_of_all_ints_except_at_index2
-from .q3 import highest_product
-from .q3 import highest_product2
-from .q6 import orthotope_intersection
-from .q6 import rectangle_intersection
-from .q13 import find_rotation_point
-from .q43 import merge_arrays
-from .q43 import merge_arrays2
+import ic
+import unittest
+
+
+class TestQ21(unittest.TestCase):
+
+    def test(self, output, *arrays):
+        self.assertEqual(ic.unique_id([1, 2, 2]), 1)
+        self.assertEqual(ic.unique_id([1]), 1)
