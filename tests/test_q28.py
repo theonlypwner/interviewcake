@@ -5,6 +5,7 @@ import unittest
 
 
 given = "Sometimes (when I nest them (my parentheticals) too much (like this (and this))) they get confusing."
+
 class TestQ28(unittest.TestCase):
 
     def check(self, text, index, expected):
@@ -15,6 +16,10 @@ class TestQ28(unittest.TestCase):
 
     def test_given_second(self):
         self.check(given, 28, 46)
+
+    def test_given_not_parens(self):
+        self.check(given, 9, -1)
+        self.check(given, 11, -1)
 
     def test_boundary(self):
         self.check("(test(test)test)", 0, 15)
