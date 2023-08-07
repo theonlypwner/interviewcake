@@ -101,18 +101,19 @@ def highest_product2(list_of_ints, K):
     if result >= 0:
         return result, candidate
 
-    # fix sign: swap maximum (smallest negative) with maximum (biggest positive)
-    candidate = list_of_ints[:K]
-    i = max((v, i) for i, v in enumerate(candidate))[1]
-    candidate[i] = max(*list_of_ints[K:])
+    # fix sign: swap maximum - (smallest -) with maximum (biggest +)
+    i = max((v, i) for i, v in enumerate(candidate) if v < 0)[1]
+    candidate[i] = max(list_of_ints[K:])
     result = product_of(candidate)
 
-    # check alternative by swapping biggest negative with biggest positive
-    candidate2 = list_of_ints[:K]
-    i = min((v, i) for i, v in enumerate(candidate2))[1]
-    candidate2[i] = min(*list_of_ints[K:])
-    result2 = product_of(candidate2)
+    # check alternative: swap minimum + (smallest +) with minimum (biggest -)
+    if any(v > 0 for v in list_of_ints[:K]):
+        candidate2 = list_of_ints[:K]
+        i = min((v, i) for i, v in enumerate(candidate2) if v > 0)[1]
+        candidate2[i] = min(list_of_ints[K:])
+        result2 = product_of(candidate2)
 
-    if result2 > result:
-        return result2, candidate2
+        if result2 > result:
+            return result2, candidate2
+
     return result, candidate
