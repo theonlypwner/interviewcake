@@ -12,11 +12,12 @@ def validate_brackets(text):
 
     Complexity: n = len(text)
     O(n) time
-    O(n) space
+    O(d) space, for depth d of nested brackets
     """
 
     # filter text
     text = [c for c in text if c in '([{|}])']
+    text.append(None)
 
     CLOSERS = {
         '(': ')',
@@ -25,35 +26,29 @@ def validate_brackets(text):
         '|': '|',
     }
 
-    unclosed = []
+    unclosed = [None]
     ambiguous = False
-
-    def handle_pipes():
-        nonlocal ambiguous
-
-        popped = False
-        while len(unclosed) >= 2 and unclosed[-1] == '|' == unclosed[-2]:
-            unclosed.pop()
-            unclosed.pop()
-
-            if popped:
-                ambiguous = True
-            popped = True
 
     for c in text:
         if c in CLOSERS:
             unclosed.append(CLOSERS[c])
-        else:
-            handle_pipes()
-            if not (unclosed and unclosed.pop() == c):
-                # unexpected closing
-                return 0
+            continue
 
-    handle_pipes()
+        # handle open |
+        popped = 0
+        while unclosed and unclosed[-1] == '|':
+            unclosed.pop()
+            popped += 1
 
-    if unclosed:
-        return 0
-    elif ambiguous:
-        return 2
-    else:
-        return 1
+        if popped & 1:
+            # odd number of |
+            return 0
+        elif popped > 2:
+            # multiple || pairs
+            ambiguous = True
+
+        if not (unclosed and unclosed.pop() == c):
+            # unexpected closing, or unclosed at end of string
+            return 0
+
+    return 2 if ambiguous else 1
