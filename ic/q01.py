@@ -2,9 +2,12 @@
 # Question 1: Apple Stocks (stock-price)
 
 
-def max_profit(stockPricesYesterday):
+def max_profit(prices):
     """Computes the maximum profit from one buy and one sale trade,
     and a set of all possible trade pairs.
+
+    The input must contain at least 2 prices, and one trade must be done,
+    even if it results in a loss.
 
     Complexity: n=len(stockPricesYesterday)
     O(n) time*
@@ -14,36 +17,34 @@ def max_profit(stockPricesYesterday):
     * O(n^2) worst case for building the trade set
     """
 
-    if not stockPricesYesterday:
+    if len(prices) < 2:
         raise ValueError("stockPricesYesterday must not be empty")
 
-    max_profit = 0
+    max_profit = prices[1] - prices[0]  # could be negative
     trades = set()
 
-    min_so_far = stockPricesYesterday[0]
+    min_so_far = prices[0]
     min_positions = [0]
 
-    for i, price in enumerate(stockPricesYesterday[1:], 1):
+    for i in range(1, len(prices)):
+        price = prices[i]
+
+        current_profit = price - min_so_far
+
+        # Update best profit
+        if current_profit > max_profit:
+            # Reset maximum profit amount
+            max_profit = current_profit
+            trades.clear()
+        if current_profit == max_profit:
+            # Add all possible trades
+            trades |= {(start, i) for start in min_positions if start != i}
+
+        # Track every possible minimum price position so far
         if price < min_so_far:
             min_so_far = price
-            min_positions = [i]
-            # Since the price decreased, it cannot result in any larger profit
-        else:
-            # Track every possible minimum position so far
-            if price == min_so_far:
-                min_positions.append(i)
-
-            current_profit = price - min_so_far
-
-            if current_profit > max_profit:
-                # Reset maximum profit amount
-                max_profit = current_profit
-                trades = set()
-
-            if current_profit == max_profit:
-                # Add all possible trades
-                for start in min_positions:
-                    if start != i:
-                        trades.update(set([(start, i)]))
+            min_positions.clear()
+        if price == min_so_far:
+            min_positions.append(i)
 
     return max_profit, trades
