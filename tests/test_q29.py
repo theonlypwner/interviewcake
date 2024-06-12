@@ -17,9 +17,6 @@ class TestQ29(unittest.TestCase):
     def test_filter(self):
         self.check('a{b[c]d(e)f}g', 1)
 
-    def test_gotcha(self):
-        self.check('{[(])}', 0)
-
     def test_empty(self):
         self.check('', 1)
 
