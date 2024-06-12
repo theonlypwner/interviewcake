@@ -8,7 +8,6 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os || 'ubuntu-latest' }}
-    continue-on-error: ${{ matrix.experimental || false }}
     strategy:
       fail-fast: false
       matrix:
@@ -26,11 +25,6 @@ jobs:
           - python: "3.2"
             os: windows-latest
           - python: "3.3"
-            os: windows-latest
-          - python: "3.5"
-            os: ubuntu-20.04
-            experimental: true
-          - python: "3.5"
             os: windows-latest
           - python: "3.6"
             os: ubuntu-20.04
