@@ -30,14 +30,21 @@ class TestQ29(unittest.TestCase):
 
     def test_ruby(self):
         self.check('|', 0)
+        self.check('|(', 0)
         self.check('|)', 0)
+        self.check('(|', 0)
+        self.check(')|', 0)
         self.check('(|)|', 0)
         self.check('|(|)', 0)
+        self.check('|||', 0)
+        self.check('(|||)', 0)
+
         self.check('||', 1)
         self.check('(||)', 1)
         self.check('|(||)|', 1)
         self.check('||(||)', 1)
         self.check('(||)||', 1)
+
         self.check('||||', 2)
         self.check('|()|||', 2)
         self.check('||()||', 2)
