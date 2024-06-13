@@ -25,10 +25,6 @@ jobs:
           - "pypy3.9"
           - "pypy3.10"
         include:
-          - python: "3.2"
-            os: windows-latest
-          - python: "3.3"
-            os: windows-latest
           - python: "3.6"
             os: ubuntu-20.04
           - python: "3.6"
