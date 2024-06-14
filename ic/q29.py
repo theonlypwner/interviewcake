@@ -17,7 +17,7 @@ def validate_brackets(text):
 
     # filter text
     text = [c for c in text if c in '([{|}])']
-    text.append(None)
+    text.append('$')
 
     CLOSERS = {
         '(': ')',
@@ -26,7 +26,7 @@ def validate_brackets(text):
         '|': '|',
     }
 
-    unclosed = [None]
+    unclosed = ['$']
     ambiguous = False
 
     for c in text:
