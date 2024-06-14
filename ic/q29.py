@@ -2,13 +2,16 @@
 # Question 29: Bracket Validator (bracket-validator)
 
 
+def cat(n):
+    for i in range(len(cat.cache), n + 1):
+        cat.cache.append((4 * i - 2) * cat.cache[-1] // (i +1))
+    return cat.cache[n]
+cat.cache = [1]
+
 def validate_brackets(text):
     """For a string containing only ([{|}]), checks that all brackets are matched.
 
-    Returns 0 for invalid, 1 for unambiguous, and 2 for ambiguous.
-
-    For example, ( and ) are invalid, ([||]) is unambiguous, and
-    |||| and ||()|| are ambiguous.
+    Returns the number of possible ways to parse (0 for invalid).
 
     Complexity: n = len(text)
     O(n) time
@@ -27,7 +30,7 @@ def validate_brackets(text):
     }
 
     unclosed = ['$']
-    ambiguous = False
+    count = 1
 
     for c in text:
         if c in CLOSERS:
@@ -43,12 +46,14 @@ def validate_brackets(text):
         if popped & 1:
             # odd number of |
             return 0
-        elif popped > 2:
-            # multiple || pairs
-            ambiguous = True
+
+        # number of ways to parse 2n | characters
+        # = number of distinct Dyck words with exactly n pairs of parentheses
+        # = nth Catalan number
+        count *= cat(popped >> 1)
 
         if not (unclosed and unclosed.pop() == c):
             # unexpected closing, or unclosed at end of string
             return 0
 
-    return 2 if ambiguous else 1
+    return count
