@@ -51,7 +51,7 @@ def highest_product(list_of_ints, K):
 
 
 def partition_array(array, k, key):
-    # TODO implement introselect
+    # TODO implement introselect, or quickselect with median of medians
     array.sort(key=key)
 
 
