@@ -4,7 +4,7 @@
 
 def cat(n):
     for i in range(len(cat.cache), n + 1):
-        cat.cache.append((4 * i - 2) * cat.cache[-1] // (i +1))
+        cat.cache.append((4 * i - 2) * cat.cache[-1] // (i + 1))
     return cat.cache[n]
 cat.cache = [1]
 
