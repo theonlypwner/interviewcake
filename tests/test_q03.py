@@ -13,7 +13,11 @@ class TestQ3(unittest.TestCase):
         actual, actual_list = ic.highest_product2(array, K)
         self.assertEqual(actual, expected)
         if expected_list:
-            self.assertCountEqual(actual_list, expected_list)
+            if hasattr(expected_list[0], '__iter__'):
+                # multiple solutions
+                self.assertIn(sorted(actual_list), map(sorted, expected_list))
+            else:
+                self.assertCountEqual(actual_list, expected_list)
 
     def check_fail(self, array, K, exception_type, exception_message):
         with self.assertRaises(exception_type) as context:
@@ -64,6 +68,10 @@ class TestQ3(unittest.TestCase):
 
     def test_all(self):
         self.check([-1, 1, 2, -2, 3], 12, [-1, 1, 2, -2, 3], K=5)
+
+    def test_multiple_solutions(self):
+        self.check([2, 2, -2, 1, -1, 0], 4, [[2, 2, 1], [2, -2, -1]])
+        self.check([2, 2, 2, -2, -2, 0], 8, ((2, 2, 2), (2, -2, -2)))
 
     def test_k_zero(self):
         self.check_fail([1], 0, ValueError, 'K must be at least 1')
