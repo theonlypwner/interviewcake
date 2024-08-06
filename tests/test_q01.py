@@ -20,6 +20,7 @@ tests = (
     ('ic_price_goes_down_all_day', [9, 7, 4, 1], [-2, [(0, 1)]]),
     ('ic_price_stays_the_same_all_day', [1, 1, 1, 1], [0, [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]]),
 )
+
 tests_error = (
     ('empty', []),
     ('single0', [0]),
@@ -35,8 +36,7 @@ class TestQ1(unittest.TestCase):
                 actual = ic.max_profit(input)
                 self.assertEqual(actual, tuple(expected))
 
-    def test_error_empty(self):
-        self.assertRaises(ValueError, lambda: ic.max_profit([]))
-
-    def test_error_single(self):
-        self.assertRaises(ValueError, lambda: ic.max_profit([0]))
+    def test_error(self):
+        for name, input in tests_error:
+            with self.subTest(name=name):
+                self.assertRaises(ValueError, lambda: ic.max_profit(input))
