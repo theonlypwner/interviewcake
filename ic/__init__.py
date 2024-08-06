@@ -6,6 +6,8 @@ from .q02 import get_products_of_all_ints_except_at_index
 from .q02 import get_products_of_all_ints_except_at_index2
 from .q03 import highest_product
 from .q03 import highest_product2
+from .q04 import union_ranges
+from .q04 import union_ranges2
 from .q06 import orthotope_intersection
 from .q06 import rectangle_intersection
 from .q21 import unique_id
