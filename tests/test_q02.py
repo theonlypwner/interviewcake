@@ -11,6 +11,18 @@ tests = (
     ('example4', [2, 4, 10], [40, 20, 8]),
     ('zero1', [1, 0, 1], [0, 1, 0]),
     ('zero2', [1, 0, 0], [0, 0, 0]),
+    # different from 'official' solution
+    ('empty', [], []),
+    ('single', [0], [1]),
+    # from official test cases
+    ('ic_small_list', [1, 2, 3], [6, 3, 2]),
+    ('ic_longer_list', [8, 2, 4, 3, 1, 5], [120, 480, 240, 320, 960, 192]),
+    ('ic_list_has_one_zero', [6, 2, 0, 3], [0, 0, 36, 0]),
+    ('ic_list_has_two_zeros', [4, 0, 9, 1, 0], [0, 0, 0, 0, 0]),
+    ('ic_one_negative_number', [-3, 8, 4], [32, -12, -24]),
+    ('ic_all_negative_numbers', [-7, -1, -4, -2], [-8, -56, -14, -28]),
+    # test_error_with_empty_list
+    # test_error_with_one_number
 )
 
 class TestQ2(unittest.TestCase):
