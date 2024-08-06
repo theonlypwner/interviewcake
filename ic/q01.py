@@ -3,7 +3,7 @@
 
 
 def max_profit(prices):
-    """Computes the maximum profit from one buy and one sale trade,
+    """Compute the maximum profit from one buy and one sale trade,
     and a set of all possible trade pairs.
 
     The input must contain at least 2 prices, and one trade must be done,

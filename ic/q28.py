@@ -3,7 +3,7 @@
 
 
 def get_closing_paren(text, opening_paren_index):
-    """Finds the index of the matching parenthesis. Returns -1 if not found.
+    """Find the index of the matching parenthesis. Return -1 if not found.
 
     Complexity: n = len(text)
     O(n) time

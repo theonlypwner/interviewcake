@@ -9,9 +9,9 @@ def cat(n):
 cat.cache = [1]
 
 def validate_brackets(text):
-    """For a string containing only ([{|}]), checks that all brackets are matched.
+    """For a string containing only ([{|}]), check that all brackets are matched.
 
-    Returns the number of possible ways to parse (0 for invalid).
+    Return the number of possible ways to parse (0 for invalid).
 
     Complexity: n = len(text)
     O(n) time
