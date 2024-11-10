@@ -6,6 +6,9 @@ def get_products_of_all_ints_except_at_index(a):
     """Compute an array with each entry replaced by the product
     of all other entries.
 
+    An empty array results in an empty array.
+    An array with a single element results in an array containing a single 1.
+
     Complexity: N=len(a)
     O(N) time
     O(N) auxiliary space
