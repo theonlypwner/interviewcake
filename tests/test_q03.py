@@ -34,12 +34,19 @@ tests = (
     # from https://stackoverflow.com/q/22104635/548194
     ('so_b0', 3, [4, 1, -7, -8, 9], 504, [-7, -8, 9]),
     ('so_b1', 3, [1, 3, -6, 3, 5], 45, [3, 3, 5]),
+    # from interviewcake sample code
+    ('ic_short_list', 3, [1, 2, 3, 4], 24),
+    ('ic_longer_list', 3, [6, 1, 3, 5, 7, 8, 2], 336),
+    ('ic_list_has_one_negative', 3, [-5, 4, 8, 2, 3], 96),
+    ('ic_list_has_two_negatives', 3, [-10, 1, 3, 2, -10], 300),
+    ('ic_list_is_all_negatives', 3, [-5, -1, -3, -2], -6),
 )
 
 tests_error = (
     ('k_zero', [1], 0, ValueError, 'K must be at least 1'),
     ('k_big_1_2', [1], 2, ValueError, 'List does not contain at least K elements'),
     ('k_big_1_3', [1], 3, ValueError, 'List does not contain at least K elements'),
+    ('k_big_2_3', [1, 1], 3, ValueError, 'List does not contain at least K elements'),
 )
 
 class TestQ3(unittest.TestCase):
